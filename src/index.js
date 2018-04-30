@@ -1,6 +1,6 @@
 'use strict';
 
-const { Gtk } = imports.gi;
+const { GLib, Gtk } = imports.gi;
 const holders = [];
 
 let configureArgs;
@@ -23,6 +23,8 @@ function reset() {
 }
 
 function getConfigureArgs() {
+  require(`${GLib.get_current_dir()}/.storybook/config.js`);
+
   return configureArgs;
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const { getStories, getConfigureArgs, reset } = require('gjs-storybook');
+const { getStories, getConfigureArgs, reset } = require('./index');
 
 const { Gtk } = imports.gi;
 Gtk.init(null);
@@ -23,20 +23,11 @@ function render() {
   console.log(context.keys())
   context.keys().forEach(m => context(m));
 
-  // https://github.com/webpack/webpack/issues/834#issuecomment-76590576
   if (module.hot) {
     module.hot.accept(context.id, () => {
       console.log('upd');
       render();
     });
-
-    // https://webpack.js.org/api/hot-module-replacement/
-    module.hot.addStatusHandler(status => {
-      // console.log(status);
-      if (status === 'abort') {
-        Gtk.main_quit(); // @TODO: make it work
-      }
-    })
   }
 
   reconcile(window, getStories());

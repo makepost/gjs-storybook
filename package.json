@@ -1,7 +1,9 @@
 {
   "name": "gjs-storybook",
   "version": "0.0.0",
-  "bin": "./bin/gjs-storybook.js",
+  "bin": {
+    "gjs-storybook": "./bin/gjs-storybook.sh"
+  },
   "main": "./src/index.js",
   "scripts": {
     "lint": "eslint 'bin/**/*.js' 'src/**/*.js' 'example/src/**/*.js'"
@@ -11,8 +13,7 @@
     "src"
   ],
   "dependencies": {
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15"
+    "gunit": "^1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
